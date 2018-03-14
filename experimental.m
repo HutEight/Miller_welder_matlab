@@ -6,7 +6,7 @@ clear all
 
 % Input
 % file_path = "data/20180309_14_44_27_welder_data.csv";
-file_path = "data/20180309_15_08_27_welder_data.csv";
+file_path = "data/20180309_14_55_12_welder_data.csv";
 
 
 % Read CSV
@@ -36,21 +36,27 @@ actual_current = csv(:, 4);
 actual_voltage = csv(:, 5);
 acutal_wire_speed = csv(:, 6);
 
-p = polyfit(seq,actual_voltage,7);
-x1 = linspace(0,4*pi);
-y1 = polyval(p,x1);
+% Polyfit Voltage Curve
+p_v = polyfit(seq,actual_voltage,7);
+x1_v = linspace(0,4*pi);
+y1_v = polyval(p_v,x1_v);
+
+% Polyfit Amperage Curve
+p_a = polyfit(seq,actual_current,25);
+x1_a = linspace(0,4*pi);
+y1_a = polyval(p_a,x1_a);
 
 figure('Name', 'Actual Voltage Fitted')
 plot(seq,actual_voltage,'.')
 hold on
-plot(x1,y1)
+plot(x1_v,y1_v)
 hold off
 
 
 figure('Name', 'Voltage Cmd vs. Actual Fitted curve');
 scatter(seq,voltage_cmd,'.')
 hold on;
-plot(x1,y1)
+plot(x1_v,y1_v)
 hold off;
 
 
@@ -65,6 +71,7 @@ scatter(seq,wire_feed_speed_cmd,'.')
 hold on;
 scatter(seq,acutal_wire_speed,'.')
 scatter(seq,actual_current,'.')
+
 hold off;
 
 
