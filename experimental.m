@@ -5,8 +5,8 @@ clear all
 %% Load CSV data
 
 % Input
-% file_path = "data/20180309_14_44_27_welder_data.csv";
-file_path = "data/20180309_14_55_12_welder_data.csv";
+ file_path = 'data/20180309_14_44_27_welder_data.csv';
+ cfile_path = 'data/20180309_14_55_12_welder_data.csv';
 
 
 % Read CSV
